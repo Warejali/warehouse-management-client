@@ -2,15 +2,17 @@ import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 
 const Header = () => {
 
     const [user] = useAuthState(auth);
+    const navigate = useNavigate()
 
     const handleSignOut = () => {
         signOut(auth);
+        navigate('/login')
     }
     return (
         <div className='bg-primary'>
@@ -24,7 +26,8 @@ const Header = () => {
 
                             {
                                 user && <>
-                                    <Nav.Link as={Link} to="AddNewItems">Add Items</Nav.Link>
+                                    <Nav.Link as={Link} to="additems">Add Items</Nav.Link>
+                                    <Nav.Link as={Link} to="manageproducts">Manage Products</Nav.Link>
                                     <Nav.Link as={Link} to="manageInventories">Manage Inventories</Nav.Link>
                                 </>
                             }
@@ -34,7 +37,15 @@ const Header = () => {
                                     :
                                     <Nav.Link as={Link} to="login">
                                         Login
-                                    </Nav.Link>}
+                                    </Nav.Link>
+                            }
+                            {
+                                user ? ''
+                                    :
+                                    <Nav.Link as={Link} to="register">
+                                        Registration
+                                    </Nav.Link>
+                            }
 
                         </Nav>
                     </Navbar.Collapse>
