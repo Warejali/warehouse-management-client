@@ -1,10 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import auth from '../../firebase.init';
 
 const AddNewItems = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [user] = useAuthState(auth);
+    const email = user?.email
     const onSubmit = data => {
-        console.log(data);
         const url = 'http://localhost:5000/product';
         fetch(url, {
             method: 'POST',
@@ -20,6 +23,7 @@ const AddNewItems = () => {
         <div className='w-50 mx-auto'>
             <h2>New Items</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
+                <input className='mb-4' value={email} {...register("email")} />
                 <input className='mb-4' placeholder='Name' {...register("name")} />
                 <input className='mb-4' placeholder='description' {...register("description")} />
                 <input className='mb-4' placeholder='supplier' {...register("seller")} />

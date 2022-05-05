@@ -13,6 +13,7 @@ import UpdateItem from './InventoryItems/UpdateItem/UpdateItem';
 import ManageItems from './InventoryItems/ManageItems/ManageItems';
 import AddNewItems from './InventoryItems/AddNewItems/AddNewItems';
 import Inventory from './InventoryItems/Inventory/Inventory';
+import MyItems from './InventoryItems/MyItems/MyItems';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         </Route>
 
         <Route path='/products' element={<InventoryItems></InventoryItems>}></Route>
+        <Route path='/myItems' element={<MyItems></MyItems>}></Route>
 
         <Route path='/update/:id' element={
           <RequireAuth>
