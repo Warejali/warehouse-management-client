@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-const useProductDetails = id =>{
-    const [product, setProduct] = useState({});
+const useItemDetails = id =>{
+    const [items, setItems] = useState({});
     useEffect(() => {
         const url = `http://localhost:5000/product/${id}`;
         fetch(url)
         .then(res=>res.json())
-        .then(data=>setProduct(data))
+        .then(data=>setItems(data))
     },[id])
     
-    return [product]
+    return [items]
 }
 
-export default useProductDetails;
+export default useItemDetails;

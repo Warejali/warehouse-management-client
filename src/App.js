@@ -7,12 +7,12 @@ import Login from './Login/Login';
 import { ToastContainer } from 'react-toastify';
 import Register from './Login/Register/Register';
 import EmailVerify from './Login/EmailVerify/EmailVerify';
-import ManageInventories from './ManageInventories/ManageInventories';
-import Products from './Products/Products';
-import UpdateProduct from './Products/UpdateProduct/UpdateProduct';
 import RequireAuth from './Login/RequireAuth/RequireAuth';
-import ManageProducts from './Products/ManageProducts/ManageProducts';
-import AddNewItems from './Products/AddNewItems/AddNewItems';
+import InventoryItems from './InventoryItems/InventoryItems';
+import UpdateItem from './InventoryItems/UpdateItem/UpdateItem';
+import ManageItems from './InventoryItems/ManageItems/ManageItems';
+import AddNewItems from './InventoryItems/AddNewItems/AddNewItems';
+import Inventory from './InventoryItems/Inventory/Inventory';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
 
         <Route path='/emailVerify' element={<EmailVerify></EmailVerify>}></Route>
 
-        <Route path='/ManageInventories' element={<ManageInventories></ManageInventories>}></Route>
+  
 
         <Route path='/additems' element={
           <RequireAuth>
@@ -36,15 +36,20 @@ function App() {
         </Route>
         <Route path='/manageproducts' element={
           <RequireAuth>
-            <ManageProducts></ManageProducts>
+            <ManageItems></ManageItems>
           </RequireAuth>}>
         </Route>
 
-        <Route path='/products' element={<Products></Products>}></Route>
+        <Route path='/products' element={<InventoryItems></InventoryItems>}></Route>
 
         <Route path='/update/:id' element={
           <RequireAuth>
-            <UpdateProduct></UpdateProduct>
+            <UpdateItem></UpdateItem>
+          </RequireAuth>}>
+        </Route>
+        <Route path='/inventory/:id' element={
+          <RequireAuth>
+            <Inventory></Inventory>
           </RequireAuth>}>
         </Route>
       </Routes>

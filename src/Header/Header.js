@@ -4,6 +4,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
+import './Header.css'
 
 const Header = () => {
 
@@ -15,35 +16,35 @@ const Header = () => {
         navigate('/login')
     }
     return (
-        <div className='bg-primary'>
-            <Navbar bg="light" expand="lg">
+        <div className='header'>
+            <Navbar bg="" expand="lg">
                 <Container>
-                    <Navbar.Brand as={Link} to='/'>React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand className=' text-white' as={Link} to='/'>React-Bootstrap</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto">
-                            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                        <Nav className="ms-auto nav-menu">
+                            <Nav.Link className='text-white menu-item' as={Link} to='/'>HOME</Nav.Link>
 
                             {
                                 user && <>
-                                    <Nav.Link as={Link} to="additems">Add Items</Nav.Link>
-                                    <Nav.Link as={Link} to="manageproducts">Manage Products</Nav.Link>
-                                    <Nav.Link as={Link} to="manageInventories">Manage Inventories</Nav.Link>
+                                    <Nav.Link className=' text-white menu-item' as={Link} to="additems">ADD ITEMS</Nav.Link>
+                                    <Nav.Link className=' text-white menu-item' as={Link} to="manageproducts">MANAGE PRODUCTS</Nav.Link>
+                                    <Nav.Link className=' text-white menu-item' as={Link} to="manageInventories">MANAGE INVENTORIES</Nav.Link>
                                 </>
                             }
                             {
                                 user ?
-                                    <button className='btn btn-link text-decoration-none' onClick={handleSignOut}>sign out</button>
+                                    <button className='btn btn-link text-decoration-none text-white menu-item' onClick={handleSignOut}>SIGN OUT</button>
                                     :
-                                    <Nav.Link as={Link} to="login">
-                                        Login
+                                    <Nav.Link className=' text-white menu-item' as={Link} to="login">
+                                        LOGIN
                                     </Nav.Link>
                             }
                             {
                                 user ? ''
                                     :
-                                    <Nav.Link as={Link} to="register">
-                                        Registration
+                                    <Nav.Link className=' text-white menu-item' as={Link} to="register">
+                                       REGISTRATION
                                     </Nav.Link>
                             }
 

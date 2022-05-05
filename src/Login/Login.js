@@ -84,7 +84,7 @@ const Login = () => {
                 <p>New to our Warehouse? <span className='btn text-danger' onClick={goToRegister}>Please register</span></p>
                 <p>Forgotten Password? <span className='btn text-primary' onClick={() => resetPassword()}>Reset </span></p>
             </div>
-            {/* <SocialLogin></SocialLogin> */}
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

@@ -1,14 +1,13 @@
-
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useProductDetails from '../../hooks/useProductDetails';
-import './UpdateProduct.css'
+import useItemDetails from '../../hooks/useItemDetails';
+import './UpdateItem.css'
 
-const UpdateProduct = () => {
-
+const UpdateItem = () => {
     const { id } = useParams();
-    const [product] = useProductDetails(id);
-    const { name, price, img, description, seller, quantity } = product;
+    const [items] = useItemDetails(id);
+    const { name, price, img, description, seller, quantity } = items;
     const navigate = useNavigate()
  
 
@@ -65,7 +64,7 @@ const UpdateProduct = () => {
                 </div>
                 <div className='col-8 mx-auto register-form my-5'>
                     <h2>Replace Blew info</h2>
-                    {product.name}
+                    {name}
                     <form onSubmit={onSubmit}>
                         <input type="text" name="name" id="" placeholder='Name' />
                         <input type="text" name="description" id="" placeholder='description' />
@@ -81,4 +80,4 @@ const UpdateProduct = () => {
     );
 };
 
-export default UpdateProduct;
+export default UpdateItem;

@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useProducts from '../../hooks/useProducts';
+import useItems from '../../hooks/useItems';
 
-
-const ManageProducts = () => {
-    const [products, setProducts] = useProducts()
-    const [quantity, setQuantity] = useState()
+const ManageItems = () => {
+    const [products, setProducts] = useItems()
 
     const navigate = useNavigate()
 
-    // const updateQuantity = () => {
-    //     console.log('Clicked');
-    //     const quantity = product.quantity;
-    //     const newQuantity = quantity + 1 ; 
-    //     setProducts(newQuantity)
-    // }
     const goToUpdate = id =>{
     navigate(`/update/${id}`);
 }
@@ -75,4 +67,4 @@ const ManageProducts = () => {
     );
 };
 
-export default ManageProducts;
+export default ManageItems;
