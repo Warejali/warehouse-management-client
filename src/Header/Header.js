@@ -44,9 +44,11 @@ const Header = () => {
                                 user ? ''
                                     :
                                     <Nav.Link className=' text-white menu-item' as={Link} to="register">
-                                       REGISTRATION
+                                        REGISTRATION
                                     </Nav.Link>
                             }
+
+                            <Nav.Link className='text-white menu-item' as={Link} to='/blogs'>BLOGS</Nav.Link>
 
                         </Nav>
                     </Navbar.Collapse>

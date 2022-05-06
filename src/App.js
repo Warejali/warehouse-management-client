@@ -14,6 +14,7 @@ import ManageItems from './InventoryItems/ManageItems/ManageItems';
 import AddNewItems from './InventoryItems/AddNewItems/AddNewItems';
 import Inventory from './InventoryItems/Inventory/Inventory';
 import MyItems from './InventoryItems/MyItems/MyItems';
+import Blogs from './Slider/Blogs/Blogs';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
 
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
 
         <Route path='/emailVerify' element={<EmailVerify></EmailVerify>}></Route>
 
