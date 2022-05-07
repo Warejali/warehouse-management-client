@@ -15,6 +15,7 @@ import AddNewItems from './InventoryItems/AddNewItems/AddNewItems';
 import Inventory from './InventoryItems/Inventory/Inventory';
 import MyItems from './InventoryItems/MyItems/MyItems';
 import Blogs from './Slider/Blogs/Blogs';
+import NotFound from './NotFound/NotFound';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
             <Inventory></Inventory>
           </RequireAuth>}>
         </Route>
+        <Route path="/*" element={<NotFound></NotFound>} />
       </Routes>
 
       <ToastContainer></ToastContainer>

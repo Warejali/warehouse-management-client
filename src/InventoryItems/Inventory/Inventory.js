@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useItemDetails from '../../hooks/useItemDetails';
 
 const Inventory = () => {
@@ -7,29 +8,70 @@ const Inventory = () => {
     const [items] = useItemDetails(id);
     let { name, price, img, description, seller, quantity } = items;
     const navigate = useNavigate()
-    const [newQuantity, setNewQuantity] = useState([])
-    
-    const deliveredHandle = () =>{
-        const remaining = quantity - 1;
-        setNewQuantity(remaining)
+
+   
+    const submitForm = event => {
+        event.preventDefault();
+        const addQuantity = event.target.addQuantity.value;
+        let newQuantity = parseInt(addQuantity) + parseInt(quantity);
         quantity = newQuantity
-        console.log(quantity);
+        const updateQuantity = { quantity };
+
+        const url = `http://localhost:5000/item/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateQuantity)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data);
+                toast(`${addQuantity} items has been added`);
+                event.target.reset()
+                navigate(`/`)
+            })     
+    }
+    const deliveredHandle = event => {
+        let plusQuantity = parseInt(quantity) - 1;
+        quantity = plusQuantity
+        const updateQuantity = { quantity };
+
+        const url = `http://localhost:5000/item/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateQuantity)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data);
+                toast('1 item has been sent');
+                event.target.reset()
+            })     
     }
 
     return (
         <div className='container'>
             <h2>Replace Blew info</h2>
-            <div class="d-flex">
+            <div className="d-flex">
                 <div className='col-md-5'>
-                    <img src={img} class="img-thumbnail p-3" alt="..." />
+                    <img src={img} className="img-thumbnail p-3" alt="..." />
                 </div>
-                <div class="col-md-7 ms-5">
-                    <h3 class="text-uppercase">{name}</h3>
-                    <p class="">{description}</p>
-                    <h5 class="">Price: {price}</h5>
-                    <h5 class="">Quantity: {quantity}</h5>
-                    <h5 class="">Seller: {seller}</h5>
-                    <p>Restock the items: <input type="number" name="" id="" /></p>
+                <div className="col-md-7 ms-5">
+                    <h3 className="text-uppercase">{name}</h3>
+                    <p className="">{description}</p>
+                    <h5 className="">Price: {price}</h5>
+                    <h5 className="">Quantity: {quantity}</h5>
+                    <h5 className="">Seller: {seller}</h5>
+                    <p>Restock the items:</p> 
+                        <form onSubmit={submitForm}>
+                        <input type="number" name="addQuantity" id="" />
+                        <input type="submit" value="Add" />
+                        </form>
                     <div>
                         <button onClick={()=>deliveredHandle()} className='btn btn-success' type="submit">Delivered</button>
                     </div>

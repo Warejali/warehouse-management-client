@@ -17,6 +17,7 @@ const Item = ({ items }) => {
                         <div className="card-body">
                             <h5 className="card-title">{name}</h5>
                             <p className="card-text">{description}</p>
+                            <p className="card-text">{quantity}</p>
                         </div>
                         <div className="card-footer">
                             <button onClick={() => goToUpdate(_id)} className='btn'>Update</button>

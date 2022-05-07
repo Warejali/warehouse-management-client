@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
+import Loading from '../../Loading/Loading';
 
 const MyItems = () => {
+    const [items, setItems] = useState([]);
     const navigate = useNavigate()
     const [user] = useAuthState(auth)
-    const [items, setItems] = useState([]);
     useEffect(() => {
         const email = user?.email
         const getMyItems = async () => {
@@ -20,8 +21,8 @@ const MyItems = () => {
                 setItems(data)
             }
             catch (error) {
-                console.log(error.message);
-                if (error.response.status === 401 || error.response.status === 403) {
+                if (error.response.status === 401) {
+                    <Loading></Loading>
                     signOut(auth)
                     navigate('/login')
                 }

@@ -17,19 +17,20 @@ const AddNewItems = () => {
             body: JSON.stringify(data)
         }).then(res=>res.json()).then(result =>{
             console.log(result);
+            
         })
     };
     return (
         <div className='w-50 mx-auto'>
             <h2>New Items</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                <input className='mb-4' value={email} {...register("email")} />
+                <input className='mb-4' value={email} {...register("email")} required/>
                 <input className='mb-4' placeholder='Name' {...register("name")} />
                 <input className='mb-4' placeholder='description' {...register("description")} />
                 <input className='mb-4' placeholder='supplier' {...register("seller")} />
-                <input className='mb-4' placeholder='Price' type="number" {...register("price")} />
-                <input className='mb-4' placeholder='quantity' type="number" {...register("quantity")} />
-                <input className='mb-4' placeholder='Photo URL' type="text" {...register("img")} />
+                <input className='mb-4' placeholder='Price' type="number" {...register("price")} required/>
+                <input className='mb-4' placeholder='quantity' type="number" {...register("quantity")} required/>
+                <input className='mb-4' placeholder='Photo URL' type="text" {...register("img")} required />
                 <input type="submit" value= 'Add Product' />
             </form>
         </div>

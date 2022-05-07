@@ -5,12 +5,15 @@ import auth from '../../firebase.init';
 import Loading from '../../Loading/Loading';
 import google from '../../images/social/google.png'
 import github from '../../images/social/githap.png'
+import useToken from '../../hooks/useToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+    const [token] = useToken(user || user1)
     const navigate = useNavigate();
     const location = useLocation();
+    
 
     let from = location.state?.from?.pathname || "/";
 
@@ -23,7 +26,7 @@ const SocialLogin = () => {
         errorElement = <p className='text-danger'>Error: {error?.message} {error1?.message}</p>
     }
 
-    if (user || user1) {
+    if (token) {
         navigate(from, { replace: true });
     }
 
@@ -31,7 +34,7 @@ const SocialLogin = () => {
         <div>
             <div>
                 <div className='d-flex align-items-center'>
-                    <div style={{ height: '1px' }} className='bg-primary w-50'></div>
+                    <div className='bg-primary w-50'></div>
                     <p className='mt-2 px-2'>or</p>
                     <div style={{ height: '1px' }} className='bg-primary w-50'></div>
                 </div>

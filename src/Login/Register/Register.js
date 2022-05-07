@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import './Register.css'
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../../Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import './Register.css'
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
 
@@ -17,6 +18,7 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user)
 
     const navigate = useNavigate()
 
@@ -28,8 +30,8 @@ const Register = () => {
         return <Loading></Loading>
     }
 
-    if (user) {
-        navigate('/')
+    if (token) {
+        navigate('/emailVerify');
     }
 
     const registerSubmit = async (event) => {
@@ -41,34 +43,31 @@ const Register = () => {
 
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-        navigate('/emailVerify');
+
     }
 
     return (
-        <div className='register-form w-50 mx-auto my-5'>
-            <h1 className='text-primary text-center py-2'>Please Register</h1>
-            <form onSubmit={registerSubmit}>
-                <input type="text" name="name" id="" placeholder='Your Name' />
+        <div className='register-form'>
+        <h2 style={{ textAlign: 'center' }}>Please Register</h2>
+        <form onSubmit={registerSubmit}>
+            <input type="text" name="name" id="" placeholder='Your Name' />
 
-                <input type="email" name="email" id="" placeholder='Email Address' required />
+            <input type="email" name="email" id="" placeholder='Email Address' required />
 
-                <input type="password" name="password" id="" placeholder='Password' required />
-
-                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
-                <label className={`ps-2 ${agree ? 'text-success' : ''}`} htmlFor="terms">Accept Genius Car Terms and Conditions</label>
-
-                <p className='text-danger'>{error}</p>
-                <input disabled={!agree} className='w-50 mx-auto btn btn-primary mt-2'
-                    type="submit" value="Register" />
-
-
-            </form>
-            <div className='text-center'>
-                <p>Have You already account? <span className='btn text-danger' onClick={goToLogin}>Please Login</span></p>
-            </div>
-            <SocialLogin></SocialLogin>
-        </div>
-    );
+            <input type="password" name="password" id="" placeholder='Password' required />
+            <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+            {/* <label className={agree ? 'ps-2': 'ps-2 text-danger'} htmlFor="terms">Accept Genius Car Terms and Conditions</label> */}
+            <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept Genius Car Terms and Conditions</label>
+            <input
+                disabled={!agree}
+                className='w-50 mx-auto btn btn-primary mt-2'
+                type="submit"
+                value="Register" />
+        </form>
+        <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={goToLogin}>Please Login</Link> </p>
+        <SocialLogin></SocialLogin>
+    </div> 
+    )
 };
 
 export default Register;

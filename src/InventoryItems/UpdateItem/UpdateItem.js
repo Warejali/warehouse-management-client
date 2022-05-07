@@ -66,12 +66,12 @@ const UpdateItem = () => {
                     <h2>Replace Blew info</h2>
                     {name}
                     <form onSubmit={onSubmit}>
-                        <input type="text" name="name" id="" placeholder='Name' />
+                        <input type="text" name="name" id="" placeholder='Name' required />
                         <input type="text" name="description" id="" placeholder='description' />
                         <input type="text" name="seller" id="" placeholder='seller' />
-                        <input type="number" name="price" id="" placeholder='price' />
-                        <input type="text" name="img" id="" placeholder='Photo URL' />
-                        <input type="number" name="quantity" id="" placeholder='quantity' />
+                        <input type="number" name="price" id="" placeholder='price' required/>
+                        <input type="text" name="img" id="" placeholder='Photo URL' required/>
+                        <input type="number" name="quantity" id="" placeholder='quantity' required/>
                         <input type="submit" value="Update products" />
                     </form>
                 </div>

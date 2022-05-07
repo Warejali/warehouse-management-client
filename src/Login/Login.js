@@ -9,7 +9,8 @@ import { async } from '@firebase/util';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import Loading from '../Loading/Loading';
-import axios from 'axios';
+import useToken from '../hooks/useToken';
+
 
 
 const Login = () => {
@@ -24,7 +25,6 @@ const Login = () => {
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(
     auth)
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/'
@@ -32,9 +32,9 @@ const Login = () => {
   const formSubmit = async event =>{
     event.preventDefault();
     await signInWithEmailAndPassword(email, password);
-    const {data} = await axios.post('http://localhost:5000/login', { email });
-    localStorage.setItem('accessToken', data.accessToken);
-    navigate(from, { replace: true });
+    // const {data} = await axios.post('http://localhost:5000/login', { email });
+    // localStorage.setItem('accessToken', data.accessToken);
+    // navigate(from, { replace: true });
   }
 
   const inputEmail = event =>{
@@ -49,13 +49,15 @@ const Login = () => {
     toast('sent to Your Email')
   }
 
+  const [token] = useToken(user)
+
   if (error) {
     return <p>Error: {error.message}</p>  
   }
   if (loading) {
     return <p><Loading></Loading></p>;
   }
-  if (user) {
+  if (token) {
         navigate(from, {replace: true} );
   }
 
