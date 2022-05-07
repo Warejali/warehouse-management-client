@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -27,9 +29,12 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/'
 
-  const formSubmit = event =>{
+  const formSubmit = async event =>{
     event.preventDefault();
-    signInWithEmailAndPassword(email, password)
+    await signInWithEmailAndPassword(email, password);
+    const {data} = await axios.post('http://localhost:5000/login', { email });
+    localStorage.setItem('accessToken', data.accessToken);
+    navigate(from, { replace: true });
   }
 
   const inputEmail = event =>{
@@ -45,14 +50,10 @@ const Login = () => {
   }
 
   if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
+    return <p>Error: {error.message}</p>  
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <p><Loading></Loading></p>;
   }
   if (user) {
         navigate(from, {replace: true} );
@@ -75,7 +76,6 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control onBlur={inputPassword} type="password" required />
                 </Form.Group>
-                <p className='text-danger'>{error}</p>
                 <Button className='mx-auto w-50 d-block' variant="primary" type="submit">
                     Login
                 </Button>
