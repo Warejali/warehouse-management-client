@@ -35,7 +35,8 @@ const ManageItems = () => {
             <h2 className='section-heading my-4'>Manage Items</h2>
             {
                 products.map(product =>
-                    <div className='row my-4 border'>
+                    <div>
+                        <div className='row my-4 border'>
                         <div className="col-md-2">
                             <img className=' item-img' src={product.img} alt="" />
                         </div>
@@ -46,7 +47,7 @@ const ManageItems = () => {
                             <p><small>{product.description}</small></p>
                         </div>
                         <div className="secondary-color col-md-1 d-flex justify-content-center align-items-center">
-                            <p>{product.price} USD</p>
+                            <p className='text-warning'>{product.price} USD</p>
                         </div>
                         <div className="col-md-2 d-flex justify-content-center align-items-center">
                             <h6>Quantity: {product.quantity}</h6>
@@ -62,6 +63,7 @@ const ManageItems = () => {
                                 <button onClick={() => handleDelete(product._id)} type="button" class="button-style btn-danger">Delete X</button>
                             </div>
                         </div>
+                    </div>
                     </div>
 
                 )
