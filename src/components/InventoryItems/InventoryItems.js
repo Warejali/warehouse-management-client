@@ -9,7 +9,7 @@ const InventoryItems = () => {
     const navigate = useNavigate()
 
     const inventoriesHandle = () =>{
-        navigate('manageproducts');
+        navigate('/manageitems');
     }
     return (
         <div className='container mt-5'>

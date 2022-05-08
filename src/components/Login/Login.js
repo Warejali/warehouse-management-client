@@ -56,7 +56,7 @@ const Login = () => {
   if (loading) {
     return <p><Loading></Loading></p>;
   }
-  if (token) {
+  if (user) {
     navigate(from, { replace: true });
   }
 

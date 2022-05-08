@@ -25,7 +25,7 @@ const Item = ({ items }) => {
                     </div>
                     <div className="item-btn secondary-color text-white d-flex justify-content-around py-2">
                         <button className='btn'><h6 className=''> QUANTITY: {quantity}</h6></button>
-                        <button onClick={() => goToUpdate(_id)} className='update-btn'><h6 className=''>UPDATE NOW</h6></button>
+                        <button onClick={() => goToUpdate(_id)} className='update-btn'><h6>UPDATE NOW</h6></button>
                     </div>
                 </div>
             </div>
