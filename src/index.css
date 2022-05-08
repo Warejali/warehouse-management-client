@@ -11,3 +11,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* My CSS */
+.primary-color{
+  background-color: #008080;
+}
+.secondary-color{
+  background-color: #e2fcfc;
+}
+
+.button-style{
+  background-color: #008080;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  transition: .5s linear;
+}
+
+.button-style:hover{
+    background-color: #019e9e80;
+}
+
+
+/* Headings Style
+   ----------------------------- */
+   .section-heading {
+    text-align: center;
+        font-size:30px; font-weight:600; color:#222; letter-spacing:1px;
+        text-transform: uppercase;
+    
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+        grid-template-rows: 27px 0;
+        grid-gap: 20px;
+        align-items: center;
+        color:gray
+    }
+    
+    .section-heading:after,.section-heading:before {
+        content: " ";
+        display: block;
+        border-bottom: 1px solid gainsboro;
+        border-top: 1px solid gainsboro;
+        height: 5px;
+      background-color:#f8f8f8;
+    }

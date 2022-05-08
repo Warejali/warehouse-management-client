@@ -1,0 +1,27 @@
+.item-card {
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border-radius: 15px;
+}
+
+.item-btn {
+    border-radius: 0 0 5px 5px;
+}
+
+.item-btn:hover {
+    transition: 1s linear;
+}
+
+.item-btn:hover {
+    background-color: #00ffff;
+}
+
+.update-btn {
+    background-color: #e2fcfc;
+    border-radius: 6px;
+    border-width: 0;
+    transition: .5s linear;
+}
+
+.update-btn:hover {
+    transform: scale(1.05);
+}

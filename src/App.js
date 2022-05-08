@@ -1,21 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Home/Home';
-import Header from './Header/Header';
-import Login from './Login/Login';
+import Header from './components/Shared/Header/Header';
 import { ToastContainer } from 'react-toastify';
-import Register from './Login/Register/Register';
-import EmailVerify from './Login/EmailVerify/EmailVerify';
-import RequireAuth from './Login/RequireAuth/RequireAuth';
-import InventoryItems from './InventoryItems/InventoryItems';
-import UpdateItem from './InventoryItems/UpdateItem/UpdateItem';
-import ManageItems from './InventoryItems/ManageItems/ManageItems';
-import AddNewItems from './InventoryItems/AddNewItems/AddNewItems';
-import Inventory from './InventoryItems/Inventory/Inventory';
-import MyItems from './InventoryItems/MyItems/MyItems';
-import Blogs from './Slider/Blogs/Blogs';
-import NotFound from './NotFound/NotFound';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register/Register';
+import Blogs from './components/Home/Blogs/Blogs';
+import EmailVerify from './components/Login/EmailVerify/EmailVerify';
+import RequireAuth from './components/Login/RequireAuth/RequireAuth';
+import AddNewItems from './components/InventoryItems/AddNewItems/AddNewItems';
+import ManageItems from './components/InventoryItems/ManageItems/ManageItems';
+import InventoryItems from './components/InventoryItems/InventoryItems';
+import MyItems from './components/InventoryItems/MyItems/MyItems';
+import UpdateItem from './components/InventoryItems/UpdateItem/UpdateItem';
+import Inventory from './components/InventoryItems/Inventory/Inventory';
+import NotFound from './components/Shared/NotFound/NotFound';
+import Footer from './components/Shared/Footer/Footer';
+
 
 function App() {
   return (
@@ -38,7 +40,7 @@ function App() {
             <AddNewItems></AddNewItems>
           </RequireAuth>}>
         </Route>
-        <Route path='/manageproducts' element={
+        <Route path='/manageitems' element={
           <RequireAuth>
             <ManageItems></ManageItems>
           </RequireAuth>}>
@@ -59,7 +61,7 @@ function App() {
         </Route>
         <Route path="/*" element={<NotFound></NotFound>} />
       </Routes>
-
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
