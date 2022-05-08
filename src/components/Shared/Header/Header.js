@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import './Header.css'
+import logo from '../../../logo.png';
 
 const Header = () => {
 
@@ -19,7 +20,7 @@ const Header = () => {
         <div className='primary-color'>
             <Navbar bg="" expand="lg">
                 <Container>
-                    <Navbar.Brand className=' text-white' as={Link} to='/'>React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand className=' logo' as={Link} to='/'><img src={logo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto nav-menu">

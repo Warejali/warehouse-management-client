@@ -9,3 +9,7 @@
 .menu-item:hover{
     background-color: #008d8d;
 }
+
+.logo img{
+    width: 200px;
+}

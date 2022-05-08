@@ -17,7 +17,7 @@ const Inventory = () => {
         quantity = newQuantity
         const updateQuantity = { quantity };
 
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://mymoon-warehouse.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -38,7 +38,7 @@ const Inventory = () => {
         quantity = plusQuantity
         const updateQuantity = { quantity };
 
-        const url = `http://localhost:5000/item/${id}`
+        const url = `https://mymoon-warehouse.herokuapp.com/item/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {

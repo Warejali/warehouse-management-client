@@ -17,7 +17,7 @@ const ManageItems = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are You sure to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/product/${id}`
+            const url = `https://mymoon-warehouse.herokuapp.com/product/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -35,35 +35,35 @@ const ManageItems = () => {
             <h2 className='section-heading my-4'>Manage Items</h2>
             {
                 products.map(product =>
-                        <div className='row my-4 border'>
-                            <div className="col-md-2">
-                                <img className=' item-img' src={product.img} alt="" />
+                    <div className='row my-4 border'>
+                        <div className="col-md-2">
+                            <img className=' item-img' src={product.img} alt="" />
+                        </div>
+                        <div className=" col-md-2 d-flex justify-content-center align-items-center secondary-color">
+                            <h5>{product.name}</h5>
+                        </div>
+                        <div className=" col-md-2 d-flex justify-content-center align-items-center">
+                            <p><small>{product.description}</small></p>
+                        </div>
+                        <div className="secondary-color col-md-1 d-flex justify-content-center align-items-center">
+                            <p>{product.price} USD</p>
+                        </div>
+                        <div className="col-md-2 d-flex justify-content-center align-items-center">
+                            <h6>Quantity: {product.quantity}</h6>
+                        </div>
+                        <div className="secondary-color col-md-3 d-flex justify-content-center align-items-center">
+                            <div className=''>
+                                <button type="button" class="button-style">Delivery Now</button>
                             </div>
-                            <div className=" col-md-2 d-flex justify-content-center align-items-center secondary-color">
-                                <h5>{product.name}</h5>
+                            <div className='' >
+                                <button onClick={() => goToUpdate(product._id)} type="button" class=" mx-3 button-style ">Edit</button>
                             </div>
-                            <div className=" col-md-2 d-flex justify-content-center align-items-center">
-                                <p><small>{product.description}</small></p>
-                            </div>
-                            <div className="secondary-color col-md-1 d-flex justify-content-center align-items-center">
-                                <p>{product.price} USD</p>
-                            </div>
-                            <div className="col-md-2 d-flex justify-content-center align-items-center">
-                                <h6>Quantity: {product.quantity}</h6>
-                            </div>
-                            <div className="secondary-color col-md-3 d-flex justify-content-center align-items-center">
-                                <div className=''>
-                                    <button type="button" class="button-style">Delivery Now</button>
-                                </div>
-                                <div className='' >
-                                    <button onClick={() => goToUpdate(product._id)} type="button" class=" mx-3 button-style ">Edit</button>
-                                </div>
-                                <div>
-                                    <button onClick={() => handleDelete(product._id)} type="button" class="button-style btn-danger">Delete X</button>
-                                </div>
+                            <div>
+                                <button onClick={() => handleDelete(product._id)} type="button" class="button-style btn-danger">Delete X</button>
                             </div>
                         </div>
-                   
+                    </div>
+
                 )
             }
         </div>
