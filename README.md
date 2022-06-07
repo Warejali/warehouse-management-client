@@ -7,6 +7,10 @@ This project was stackoverflow with [Question](https://stackoverflow.com/questio
 ## Develop Mymoon Fashion warehouse website 
 ***
 A list of action plan:
+* Complete warehouse management website. there are advanced features and functions.
+* full admin panel admin can manage everything easily.
+* A MERN Stack web application where admin can able to manage products and place the orders.
+* User can sign up with Facebook or Gmail and Forget password.
 * I am develop a warehouse website website. I have created lot of components. I am working on the website with react.
 * I have use React, React Bootstrap, Node JS, ect. 
 * The website is inventory management. 
